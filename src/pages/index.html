@@ -6,12 +6,14 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
   />
+
   <title>Article Writer, AI Writer & Writing Tool | Long-Form SEO Content – SEOScribe</title>
 
   <!-- Primary SEO -->
   <meta name="description" content="SEOScribe is the long-form article writer and AI writer built for SEO. Create 2,000–6,000 word articles with citations, hero images, A/B titles, FAQs, and social posts. Free article writer demo (1/day). The writing tool teams use to rank." />
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
   <link rel="canonical" href="https://seoscribe.pro/" />
+  <meta name="theme-color" content="#0d183b" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Article Writer, AI Writer & Writing Tool – SEOScribe" />
@@ -19,8 +21,6 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/hero.png" />
   <meta property="og:url" content="https://seoscribe.pro/" />
-  <meta property="og:site_name" content="SEOScribe" />
-  <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -28,37 +28,40 @@
   <meta name="twitter:description" content="2–6k words, citations, hero image, FAQs, social posts. Free demo." />
   <meta name="twitter:image" content="/hero.png" />
 
-  <!-- Misc -->
-  <meta name="theme-color" content="#0d183b" />
-
   <!-- Keywords (legacy; engines use page content) -->
   <meta name="keywords" content="ai writer, article writer, writing tool, ai writing tool, article writing software, blog writer, seo content writer, free article writer, ai blog generator, content brief, plagiarism checker, headline analyzer, readability, competitor analysis, meta description" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
 
-  <!-- Performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Fonts (UI + Display) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Preload + prioritize LCP hero image (keeps your hero.png first & fastest) -->
+  <!-- Performance: Preload LCP image -->
   <link rel="preload" as="image" href="/hero.png" imagesrcset="/hero.png 1x" fetchpriority="high" />
-  <!-- Preload below-the-fold image used early in scroll -->
   <link rel="preload" as="image" href="/1.jpeg" imagesrcset="/1.jpeg 1x" />
 
-  <!-- Tailwind & Icons -->
+  <!-- Tailwind & Icons (CDN for simplicity) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
   <style>
+    :root{
+      --bg:#0d183b;
+      --bg2:#1f0f3f;
+      --glass: rgba(255,255,255,.06);
+      --glass-strong: rgba(255,255,255,.12);
+      --border: rgba(255,255,255,.12);
+      --ring: rgba(122,90,248,.45);
+    }
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-    body { background:linear-gradient(135deg,#0d183b 0%, #1f0f3f 50%, #0d183b 100%); min-height:100vh; color:#fff; }
+    h1,h2,h3,.display{ font-family:'Sora','Inter',system-ui,-apple-system,'Segoe UI',sans-serif }
+    body { background:linear-gradient(135deg,var(--bg) 0%, var(--bg2) 50%, var(--bg) 100%); min-height:100vh; color:#fff; }
 
-    /* Subtle grid background for hero (visual polish) */
+    /* Subtle grid background for hero */
     .grid-bg:before{
       content:"";
-      position:fixed; inset:0; pointer-events:none; opacity:.07;
+      position:fixed; inset:0; pointer-events:none; opacity:.06;
       background-image: radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0);
       background-size: 24px 24px;
       mix-blend-mode:screen;
@@ -68,56 +71,44 @@
     @keyframes slideIn { from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
     @keyframes spin { to{transform:rotate(360deg)} }
-
     .animate-fade{animation:fadeIn .6s ease-out forwards}
     .animate-slide{animation:slideIn .5s ease-out forwards}
     .animate-float{animation:float 3s ease-in-out infinite}
-    .animate-spin{animation:spin 1s linear infinite}
 
-    .glass{background:rgba(255,255,255,.06); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.12)}
-    .glass-strong{background:rgba(255,255,255,.12); backdrop-filter:blur(30px); border:1px solid rgba(255,255,255,.2)}
+    .glass{background:var(--glass); backdrop-filter:blur(18px); border:1px solid var(--border)}
+    .glass-strong{background:var(--glass-strong); backdrop-filter:blur(26px); border:1px solid rgba(255,255,255,.2)}
     .gradient-text{background:linear-gradient(135deg,#7a5af8 0%,#d66efd 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
 
-    .btn-primary{background:linear-gradient(135deg,#7a5af8 0%,#d66efd 100%); padding:1rem 1.2rem; border-radius:12px; font-weight:700; transition:.3s; border:none; cursor:pointer; box-shadow:0 10px 30px rgba(122,90,248,.3); color:#fff; display:inline-flex; align-items:center; gap:.5rem; text-decoration:none}
-    .btn-primary:hover{transform:translateY(-2px); box-shadow:0 15px 40px rgba(214,110,253,.4)}
+    .btn-primary{background:linear-gradient(135deg,#7a5af8 0%,#d66efd 100%); padding:1rem 1.2rem; border-radius:12px; font-weight:800; transition:.25s; border:none; cursor:pointer; box-shadow:0 10px 30px rgba(122,90,248,.28); color:#fff; display:inline-flex; align-items:center; gap:.5rem; text-decoration:none}
+    .btn-primary:hover{transform:translateY(-2px); box-shadow:0 15px 42px rgba(214,110,253,.36)}
     .btn-primary:disabled{opacity:.6; cursor:not-allowed; transform:none}
-
-    .btn-secondary{background:rgba(255,255,255,.05); padding:.8rem 1rem; border-radius:12px; font-weight:600; transition:.3s; border:1px solid rgba(255,255,255,.15); cursor:pointer; color:#fff; display:inline-flex; align-items:center; gap:.4rem}
+    .btn-secondary{background:rgba(255,255,255,.05); padding:.8rem 1rem; border-radius:12px; font-weight:700; transition:.25s; border:1px solid rgba(255,255,255,.15); cursor:pointer; color:#fff; display:inline-flex; align-items:center; gap:.4rem}
     .btn-secondary:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.25)}
     .btn-secondary:disabled{opacity:.5; cursor:not-allowed}
 
-    .input-field{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); padding:1.05rem 1.1rem; border-radius:12px; color:#fff; font-size:1rem; width:100%; transition:.3s}
-    .input-field:focus{outline:none; border-color:#667eea; box-shadow:0 0 0 3px rgba(102,126,234,.1); background:rgba(255,255,255,.08)}
+    .input-field{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); padding:1.05rem 1.1rem; border-radius:12px; color:#fff; font-size:1rem; width:100%; transition:.25s}
+    .input-field:focus{outline:none; border-color:#667eea; box-shadow:0 0 0 3px rgba(102,126,234,.12); background:rgba(255,255,255,.08)}
 
-    .card{background:rgba(255,255,255,.07); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:1rem; transition:.3s}
-    .badge{display:inline-flex; align-items:center; padding:.4rem .7rem; border-radius:999px; font-size:.8rem; font-weight:700}
+    .card{background:rgba(255,255,255,.07); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:1rem; transition:transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-3px)}
+    .badge{display:inline-flex; align-items:center; padding:.4rem .7rem; border-radius:999px; font-size:.8rem; font-weight:800}
     .pill{border:1px solid rgba(255,255,255,.18); border-radius:999px; padding:.35rem .7rem; display:inline-flex; gap:.4rem; align-items:center; margin:.25rem}
-    .muted{color:rgba(255,255,255,.75)}
-    .kicker{font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:#a5b4fc; font-weight:800}
+    .muted{color:rgba(255,255,255,.78)}
+    .kicker{font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:#a5b4fc; font-weight:900}
     .anchor{scroll-margin-top:100px}
     .table{width:100%; border-collapse:collapse}
     .table th,.table td{border:1px solid rgba(255,255,255,.12); padding:.65rem; text-align:left; font-size:.95rem}
     .table th{background:rgba(102,126,234,.08)}
     pre{white-space:pre-wrap; word-wrap:break-word}
-    .glow-ring{position:absolute; inset:-2px; border-radius:20px; background:conic-gradient(from 180deg at 50% 50%, rgba(122,90,248,.35), rgba(214,110,253,.35), rgba(122,90,248,.35)); filter:blur(24px); opacity:.6; z-index:-1}
 
-    /* Image polish */
+    .gb { position:relative; border-radius:20px; }
+    .gb:before{ content:""; position:absolute; inset:-1px; border-radius:inherit;
+      background: conic-gradient(from 180deg at 50% 50%, rgba(122,90,248,.4), rgba(214,110,253,.4), rgba(122,90,248,.4));
+      filter: blur(16px); opacity:.55; z-index:-1;
+    }
+
     .showcase-img{border-radius:24px; box-shadow:0 30px 70px rgba(0,0,0,.35); transform:translateZ(0); transition:transform .35s ease, box-shadow .35s ease;}
     .showcase-img:hover{transform:translateY(-6px); box-shadow:0 45px 90px rgba(0,0,0,.45)}
-
-    .shine{position:relative; overflow:hidden}
-    .shine:after{
-      content:""; position:absolute; inset:auto -60% -60% -60%; top:-60%;
-      background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 20%, rgba(255,255,255,.18) 40%, transparent 70%);
-      transform:rotate(8deg); animation:shine 6s ease-in-out infinite;
-    }
-    @keyframes shine{
-      0%{transform:translateX(-120%) rotate(8deg)}
-      100%{transform:translateX(120%) rotate(8deg)}
-    }
-
-    /* Performance: avoid layout thrash on heavy sections */
-    .cv-auto{content-visibility:auto; contain-intrinsic-size: 1000px 800px;}
 
     /* FAQ accordion */
     details.faq summary::-webkit-details-marker{display:none}
@@ -182,6 +173,7 @@
       competitors: 'Competitor Analysis',
       keywords: 'Keyword Cluster',
       brief: 'Content Brief',
+      meta: 'Meta Description',
       assistant: 'AI Assistant',
     };
 
@@ -219,14 +211,8 @@
       localStorage.setItem('toolLocksDate', todayStr());
     }
 
-    function toolIsLocked(toolId){
-      return state.toolLocks[toolId]===todayStr();
-    }
-
-    function getToolUses(id){
-      return (state.toolUsageToday && state.toolUsageToday[id]) || 0;
-    }
-
+    function toolIsLocked(toolId){ return state.toolLocks[toolId]===todayStr(); }
+    function getToolUses(id){ return (state.toolUsageToday && state.toolUsageToday[id]) || 0; }
     function setToolUses(id,n){
       state.toolUsageToday[id]=n;
       localStorage.setItem('toolUsageToday', JSON.stringify(state.toolUsageToday));
@@ -235,41 +221,15 @@
         localStorage.setItem('toolUsageDate', state.toolUsageDate);
       }
     }
-
-    function incrementToolUse(id){
-      const used=getToolUses(id)+1;
-      setToolUses(id, used);
-      const limit=state.perToolLimit||(isPro()?10:1);
-      if(used>=limit) lockTool(id);
-    }
-
-    function toolUsesLeft(id){
-      const limit=state.perToolLimit||(isPro()?10:1);
-      return Math.max(0, limit - getToolUses(id));
-    }
-
-    function toolDisabled(id){
-      const limit=state.perToolLimit||(isPro()?10:1);
-      return getToolUses(id)>=limit;
-    }
+    function incrementToolUse(id){ const used=getToolUses(id)+1; setToolUses(id, used); const limit=state.perToolLimit||(isPro()?10:1); if(used>=limit) lockTool(id); }
+    function toolUsesLeft(id){ const limit=state.perToolLimit||(isPro()?10:1); return Math.max(0, limit - getToolUses(id)); }
+    function toolDisabled(id){ const limit=state.perToolLimit||(isPro()?10:1); return getToolUses(id)>=limit; }
 
     function getCombinedTodayGenerations(){
-      if (isSignedIn()) {
-        return state.usage?.today?.generations || 0;
-      }
-      const local=state.localGenerations||0;
-      return local;
+      if (isSignedIn()) return state.usage?.today?.generations || 0;
+      return state.localGenerations||0;
     }
-
-    function incrementLocalGenerations(){
-      if (isSignedIn()) return;
-      state.localGenerations=(state.localGenerations||0)+1;
-      localStorage.setItem('localGenerations', String(state.localGenerations));
-      if(!state.genDate){
-        state.genDate=todayStr();
-        localStorage.setItem('genDate', state.genDate);
-      }
-    }
+    function incrementLocalGenerations(){ if (!isSignedIn()) { state.localGenerations=(state.localGenerations||0)+1; localStorage.setItem('localGenerations', String(state.localGenerations)); if(!state.genDate){ state.genDate=todayStr(); localStorage.setItem('genDate', state.genDate); } } }
 
     function showToast(message, type='info'){
       const colors={
@@ -281,75 +241,31 @@
       el.style.cssText = `position:fixed;top:2rem;right:2rem;padding:1rem 1.1rem;border-radius:12px;background:${colors[type]};color:white;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:9999;animation:slideIn .25s ease-out;max-width:420px;`;
       el.textContent = message;
       document.body.appendChild(el);
-      setTimeout(()=>{
-        el.style.opacity='0';
-        el.style.transform='translateX(100px)';
-        el.style.transition='all .25s';
-        setTimeout(()=>el.remove(),250);
-      }, 3200);
+      setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateX(100px)'; el.style.transition='all .25s'; setTimeout(()=>el.remove(),250); }, 3200);
     }
 
     const proGate=(actionName,cb)=>function(...args){
-      if(!isPro()){
-        showToast(`Upgrade to Pro to ${actionName}.`,'info');
-        return;
-      }
+      if(!isPro()){ showToast(`Upgrade to Pro to ${actionName}.`,'info'); return; }
       cb(...args);
     };
 
     function setAuth(accessToken, refreshToken){
-      if(accessToken){
-        localStorage.setItem('authToken', accessToken);
-        state.authToken=accessToken;
-      }
-      if(refreshToken){
-        localStorage.setItem('refreshToken', refreshToken);
-        state.refreshToken=refreshToken;
-      }
+      if(accessToken){ localStorage.setItem('authToken', accessToken); state.authToken=accessToken; }
+      if(refreshToken){ localStorage.setItem('refreshToken', refreshToken); state.refreshToken=refreshToken; }
       const prevView = localStorage.getItem('view');
-      if(prevView==='tools'){
-        state.view='tools';
-        localStorage.setItem('view','tools');
-      } else {
-        goToDashboard();
-      }
-      fetchProfile();
-      fetchArticles();
+      if(prevView==='tools'){ state.view='tools'; localStorage.setItem('view','tools'); }
+      else { goToDashboard(); }
+      fetchProfile(); fetchArticles();
     }
-
     function clearAuth(){
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('refreshToken');
-      state={
-        ...state,
-        authToken:null,
-        refreshToken:null,
-        user:null,
-        plan:'free',
-        usage:{ today:{generations:0}, month:{generations:0} },
-        view:'landing',
-        chosenTitle:null,
-        clusters:null,
-        ctaShownThisSession:false
-      };
-      localStorage.setItem('view','landing');
-      render();
+      localStorage.removeItem('authToken'); localStorage.removeItem('refreshToken');
+      state={...state, authToken:null, refreshToken:null, user:null, plan:'free',
+        usage:{ today:{generations:0}, month:{generations:0} }, view:'landing',
+        chosenTitle:null, clusters:null, ctaShownThisSession:false };
+      localStorage.setItem('view','landing'); render();
     }
-
-    const getAuthHeaders=()=>{
-      const h={'Content-Type':'application/json'};
-      if(state.authToken) h['Authorization']=`Bearer ${state.authToken}`;
-      return h;
-    };
-
-    function goToDashboard(){
-      state.view='dashboard';
-      localStorage.setItem('view','dashboard');
-      render();
-      if(location.search||location.hash){
-        history.replaceState({},'',location.origin + location.pathname);
-      }
-    }
+    const getAuthHeaders=()=>{ const h={'Content-Type':'application/json'}; if(state.authToken) h['Authorization']=`Bearer ${state.authToken}`; return h; };
+    function goToDashboard(){ state.view='dashboard'; localStorage.setItem('view','dashboard'); render(); if(location.search||location.hash){ history.replaceState({},'',location.origin + location.pathname); } }
 
     // ----------- API -----------
     async function fetchProfile(){
@@ -366,7 +282,6 @@
         render();
       } catch {/* noop */}
     }
-
     async function fetchArticles(){
       if(!state.authToken) return;
       try{
@@ -375,23 +290,12 @@
         const data = await res.json().catch(()=>[]);
         state.articles = Array.isArray(data) ? data : [];
         render();
-      } catch(e){
-        showToast(e.message || 'Could not load your library','error');
-      }
+      } catch(e){ showToast(e.message || 'Could not load your library','error'); }
     }
-
     async function saveCurrentArticle(){
-      if(!state.authToken){
-        showToast('Please sign in to save','info');
-        showModal('authModal');
-        return;
-      }
-      if(!state.article){
-        showToast('Nothing to save yet.','info');
-        return;
-      }
-      state.saving = true;
-      render();
+      if(!state.authToken){ showToast('Please sign in to save','info'); showModal('authModal'); return; }
+      if(!state.article){ showToast('Nothing to save yet.','info'); return; }
+      state.saving = true; render();
       try{
         const body = {
           title: state.chosenTitle || state.article.title || 'Untitled',
@@ -399,72 +303,37 @@
           word_count: state.article.word_count || 0,
           reading_time_minutes: state.article.reading_time_minutes || 0
         };
-        const res = await fetch(`${API_URL}/api/articles`, {
-          method:'POST',
-          headers:getAuthHeaders(),
-          body:JSON.stringify(body),
-          mode:'cors'
-        });
+        const res = await fetch(`${API_URL}/api/articles`, { method:'POST', headers:getAuthHeaders(), body:JSON.stringify(body), mode:'cors' });
         if(!res.ok) throw new Error('Save failed');
-        showToast('💾 Saved to your library','success');
-        await fetchArticles();
-      } catch(e){
-        showToast(e.message || 'Save failed','error');
-      }
-      state.saving = false;
-      render();
+        showToast('💾 Saved to your library','success'); await fetchArticles();
+      } catch(e){ showToast(e.message || 'Save failed','error'); }
+      state.saving = false; render();
     }
-
     async function deleteArticle(id){
       if(!confirm('Delete this article?')) return;
       try{
-        const res = await fetch(`${API_URL}/api/articles/${id}`, {
-          method:'DELETE',
-          headers:getAuthHeaders(),
-          mode:'cors'
-        });
+        const res = await fetch(`${API_URL}/api/articles/${id}`, { method:'DELETE', headers:getAuthHeaders(), mode:'cors' });
         if(!res.ok) throw new Error('Delete failed');
-        state.articles = state.articles.filter((a)=>a.id!==id);
-        render();
-        showToast('🗑️ Deleted','success');
-      } catch(e){
-        showToast(e.message || 'Delete failed','error');
-      }
+        state.articles = state.articles.filter((a)=>a.id!==id); render(); showToast('🗑️ Deleted','success');
+      } catch(e){ showToast(e.message || 'Delete failed','error'); }
     }
-
     async function fetchTemplates(){
-      state.templatesLoading = true;
-      render();
+      state.templatesLoading = true; render();
       try{
         const res = await fetch(`${API_URL}/api/templates`, { headers:getAuthHeaders(), mode:'cors' });
-        if(res.ok){
-          state.templates = await res.json();
-        }
+        if(res.ok){ state.templates = await res.json(); }
       } catch {}
-      state.templatesLoading = false;
-      render();
+      state.templatesLoading = false; render();
     }
-
     async function renameArticle(id){
       const a = state.articles.find((x)=>x.id===id);
-      const title = prompt('Rename article title:', a?.title || 'Untitled');
-      if(!title) return;
+      const title = prompt('Rename article title:', a?.title || 'Untitled'); if(!title) return;
       try{
-        const res = await fetch(`${API_URL}/api/articles/${id}`, {
-          method:'PATCH',
-          headers:getAuthHeaders(),
-          body:JSON.stringify({ title }),
-          mode:'cors'
-        });
+        const res = await fetch(`${API_URL}/api/articles/${id}`, { method:'PATCH', headers:getAuthHeaders(), body:JSON.stringify({ title }), mode:'cors' });
         if(!res.ok) throw new Error('Rename failed');
-        a.title = title;
-        render();
-        showToast('✏️ Renamed','success');
-      } catch(e){
-        showToast(e.message || 'Rename failed','error');
-      }
+        a.title = title; render(); showToast('✏️ Renamed','success');
+      } catch(e){ showToast(e.message || 'Rename failed','error'); }
     }
-
     async function openSavedArticle(id){
       try{
         const res = await fetch(`${API_URL}/api/articles/${id}`, { headers:getAuthHeaders(), mode:'cors' });
@@ -472,11 +341,8 @@
         const row = await res.json();
         state.article = row?.data || null;
         state.chosenTitle = state.article?.title || row?.title || null;
-        state.view = 'article';
-        render();
-      } catch(e){
-        showToast(e.message || 'Could not open','error');
-      }
+        state.view = 'article'; render();
+      } catch(e){ showToast(e.message || 'Could not open','error'); }
     }
 
     async function generateArticle(target='landing'){
@@ -487,10 +353,7 @@
       const urlEl = document.getElementById(target==='dashboard' ? 'dashUrl' : 'heroUrl');
       const website_url = (urlEl?.value || '').trim();
 
-      if(!topic){
-        showToast('Please enter a topic','error');
-        return;
-      }
+      if(!topic){ showToast('Please enter a topic','error'); return; }
 
       const used = getCombinedTodayGenerations();
       const limit = isPro()?15:1;
@@ -498,12 +361,10 @@
         const msg = isPro()
           ? `Daily article limit reached (${limit}/day on Pro). Resets at midnight.`
           : `Daily free limit reached (1/day). Try again tomorrow or upgrade to Pro.`;
-        showToast(msg,'error');
-        return;
+        showToast(msg,'error'); return;
       }
 
-      state.loading = true;
-      render();
+      state.loading = true; render();
 
       const controller = new AbortController();
       const timeoutMs = 120000;
@@ -522,45 +383,24 @@
 
         const out = await (res.ok ? res.json() : res.json().catch(()=>({})));
         if(!res.ok){
-          if(res.status===429){
-            showToast(out.message || 'Daily limit reached. Sign in or upgrade to continue.','error');
-            if(!state.authToken) setTimeout(()=>showModal('authModal'),600);
-            state.loading=false; render(); return;
-          }
-          if(res.status===403){
-            showToast(out.message || 'You\'ve used your free demo. Create a free account to continue.','error');
-            setTimeout(()=>showModal('authModal'),600);
-            state.loading=false; render(); return;
-          }
+          if(res.status===429){ showToast(out.message || 'Daily limit reached. Sign in or upgrade to continue.','error'); if(!state.authToken) setTimeout(()=>showModal('authModal'),600); state.loading=false; render(); return; }
+          if(res.status===403){ showToast(out.message || 'You\'ve used your free demo. Create a free account to continue.','error'); setTimeout(()=>showModal('authModal'),600); state.loading=false; render(); return; }
           throw new Error(out.message || out.error || 'Generation failed');
         }
 
-        state.article = out;
-        state.chosenTitle = out.title || null;
-        state.clusters = null;
+        state.article = out; state.chosenTitle = out.title || null; state.clusters = null;
+        incrementLocalGenerations(); fetchProfile();
 
-        incrementLocalGenerations();
-
-        fetchProfile();
-
-        state.loading=false;
-        state.view='article';
-        showToast('✨ Article generated successfully!','success');
-        render();
+        state.loading=false; state.view='article'; showToast('✨ Article generated successfully!','success'); render();
         window.scrollTo({ top:0, behavior:'smooth' });
-
         if(!state.user && !state.ctaShownThisSession){
-          state.ctaShownThisSession = true;
-          setTimeout(()=>showModal('ctaModal'), 1100);
+          state.ctaShownThisSession = true; setTimeout(()=>showModal('ctaModal'), 1100);
           setTimeout(()=>document.getElementById('stickyCta')?.classList.remove('hidden'), 1400);
         }
-
       } catch(err){
-        clearTimeout(timeoutId);
-        state.loading = false;
+        clearTimeout(timeoutId); state.loading = false;
         if(err.name==='AbortError') showToast('Generation timed out. Please try again later.','error');
-        else showToast(err.message || 'Failed to generate','error');
-        render();
+        else showToast(err.message || 'Failed to generate','error'); render();
       }
     }
 
@@ -569,67 +409,39 @@
       const timeoutMs = 60000;
       const timer = setTimeout(()=>controller.abort(), timeoutMs);
 
-      const res = await fetch(`${API_URL}${path}`, {
-        method:'POST',
-        headers:getAuthHeaders(),
-        mode:'cors',
-        signal:controller.signal,
-        body:JSON.stringify(payload || {})
-      });
+      const res = await fetch(`${API_URL}${path}`, { method:'POST', headers:getAuthHeaders(), mode:'cors', signal:controller.signal, body:JSON.stringify(payload || {}) });
       clearTimeout(timer);
 
       const data = await (res.ok ? res.json() : res.json().catch(()=>({})));
       if(!res.ok){
         const toolId = inferToolId(path);
-        if(res.status===429 && toolId){
-          lockTool(toolId);
-        }
-        if(res.status===401){
-          showModal('authModal');
-        }
+        if(res.status===429 && toolId){ lockTool(toolId); }
+        if(res.status===401){ showModal('authModal'); }
         throw new Error(data.error || data.message || 'Action failed');
       }
       return data;
     }
 
     async function upgradeToPro(){
-      if(!state.authToken){
-        showToast('Please sign in first to upgrade','info');
-        showModal('authModal');
-        return;
-      }
+      if(!state.authToken){ showToast('Please sign in first to upgrade','info'); showModal('authModal'); return; }
       try{
         const res = await fetch(`${API_URL}/api/stripe/create-checkout`, {
-          method:'POST',
-          headers:getAuthHeaders(),
-          mode:'cors',
-          body:JSON.stringify({
-            successUrl: `${window.location.origin}?upgrade=success`,
-            cancelUrl: `${window.location.origin}?upgrade=canceled`
-          })
+          method:'POST', headers:getAuthHeaders(), mode:'cors',
+          body:JSON.stringify({ successUrl: `${window.location.origin}?upgrade=success`, cancelUrl: `${window.location.origin}?upgrade=canceled` })
         });
         if(!res.ok) throw new Error('Failed to create checkout');
-        const { url } = await res.json();
-        window.location.href = url;
-      } catch {
-        showToast('Checkout failed. Try again.','error');
-      }
+        const { url } = await res.json(); window.location.href = url;
+      } catch { showToast('Checkout failed. Try again.','error'); }
     }
-
     async function openBillingPortal(){
       try{
         const res = await fetch(`${API_URL}/api/stripe/portal`, {
-          method:'POST',
-          headers:getAuthHeaders(),
-          mode:'cors',
+          method:'POST', headers:getAuthHeaders(), mode:'cors',
           body:JSON.stringify({ returnUrl: window.location.origin })
         });
         if(!res.ok) throw new Error('Could not open billing');
-        const { url } = await res.json();
-        window.location.href = url;
-      } catch(e){
-        showToast(e.message || 'Could not open billing','error');
-      }
+        const { url } = await res.json(); window.location.href = url;
+      } catch(e){ showToast(e.message || 'Could not open billing','error'); }
     }
 
     // ----------- AUTH & NAV -----------
@@ -637,57 +449,22 @@
       const redirectBack = window.location.origin;
       window.location.href = `${API_URL}/auth/google?redirect=${encodeURIComponent(redirectBack)}`;
     }
-
     function parseOAuthCallbackIfPresent(){
       const query = new URLSearchParams(window.location.search);
       const hash = new URLSearchParams((window.location.hash || '').replace(/^#/,''));
       const get = (k)=> query.get(k) || hash.get(k);
+      const access = get('access_token'); const refresh = get('refresh_token');
+      const type = get('type'); const error = get('error'); const upgrade = get('upgrade');
 
-      const access = get('access_token');
-      const refresh = get('refresh_token');
-      const type = get('type');
-      const error = get('error');
-      const upgrade = get('upgrade');
-
-      if(access || refresh){
-        setAuth(access, refresh);
-        showToast(type==='signup' ? '✅ Signed in with Google' : '✅ Signed in','success');
-        return;
-      }
-      if(error){
-        showToast('Auth error: ' + error,'error');
-        history.replaceState({},'',location.origin + location.pathname);
-      }
-      if(upgrade==='success'){
-        setTimeout(()=>{
-          showToast('🎉 Welcome to Pro!','success');
-          history.replaceState({},'',location.pathname);
-          fetchProfile();
-        }, 300);
-      } else if(upgrade==='canceled'){
-        showToast('Upgrade canceled','info');
-        history.replaceState({},'',location.pathname);
-      }
+      if(access || refresh){ setAuth(access, refresh); showToast(type==='signup' ? '✅ Signed in with Google' : '✅ Signed in','success'); return; }
+      if(error){ showToast('Auth error: ' + error,'error'); history.replaceState({},'',location.origin + location.pathname); }
+      if(upgrade==='success'){ setTimeout(()=>{ showToast('🎉 Welcome to Pro!','success'); history.replaceState({},'',location.pathname); fetchProfile(); }, 300); }
+      else if(upgrade==='canceled'){ showToast('Upgrade canceled','info'); history.replaceState({},'',location.pathname); }
     }
 
-    function signOut(){
-      clearAuth();
-      showToast('Signed out','info');
-    }
-
-    function showModal(id){
-      const el=document.getElementById(id);
-      if(el){
-        el.style.display='block';
-        setTimeout(()=>{ try{ window.lucide && lucide.createIcons(); } catch{} },10);
-      }
-    }
-
-    function closeModal(id){
-      const el=document.getElementById(id);
-      if(el) el.style.display='none';
-    }
-
+    function signOut(){ clearAuth(); showToast('Signed out','info'); }
+    function showModal(id){ const el=document.getElementById(id); if(el){ el.style.display='block'; setTimeout(()=>{ try{ window.lucide && lucide.createIcons(); } catch{} },10); } }
+    function closeModal(id){ const el=document.getElementById(id); if(el) el.style.display='none'; }
     function inferToolId(path){
       if(/headline-analyzer/.test(path)) return 'headline';
       if(/readability/.test(path)) return 'readability';
@@ -722,7 +499,6 @@
       navigator.clipboard.writeText(generateMarkdownContent(state.article))
         .then(()=>showToast('📋 Copied','success'));
     });
-
     const downloadMarkdown = proGate('export Markdown', ()=>{
       const content = generateMarkdownContent(state.article);
       const blob = new Blob([content], { type:'text/markdown' });
@@ -733,6 +509,60 @@
       showToast('⬇️ Downloaded','success');
     });
 
+    /* ---------- PREMIUM ADDITIONS ---------- */
+
+    // Countdown bar snippet (used in navs)
+    function renderCountdownBar(){
+      const used = getCombinedTodayGenerations();
+      const limit = isPro()?15:1;
+      const left = Math.max(0, limit - used);
+      return `
+        <div class="w-full bg-white/5 border-b border-white/10">
+          <div class="max-w-[1280px] mx-auto px-6 py-2 flex items-center justify-between text-sm">
+            <div class="flex items-center gap-2">
+              <i data-lucide="alarm-clock" class="w-4 h-4"></i>
+              <span>Daily limit resets in <b id="resetClock">—:—:—</b></span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-white/80">Articles left today: <b>${left}</b> / ${limit}</span>
+              ${state.user ? '' : `<button data-action="open-auth" class="btn-primary text-xs px-3 py-2">Start Free</button>`}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    function startResetCountdown(){
+      function msToHMS(ms){
+        const s = Math.max(0, Math.floor(ms/1000));
+        const h = String(Math.floor(s/3600)).padStart(2,'0');
+        const m = String(Math.floor((s%3600)/60)).padStart(2,'0');
+        const sec = String(s%60).padStart(2,'0');
+        return `${h}:${m}:${sec}`;
+      }
+      function midnightMs(){
+        const now = new Date();
+        const mid = new Date(now); mid.setHours(24,0,0,0);
+        return mid - now;
+      }
+      const el = ()=> document.getElementById('resetClock');
+      if(el()){ el().textContent = msToHMS(midnightMs()); }
+      setInterval(()=>{ if(el()){ el().textContent = msToHMS(midnightMs()); } }, 1000);
+    }
+
+    // Global CTA dock (appears on landing/tools/dashboard)
+    function renderGlobalCtaDock(){
+      return `
+        <div class="fixed bottom-4 right-4 z-[70]">
+          <div class="glass-strong gb rounded-2xl p-3 shadow-2xl flex items-center gap-3">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+            <div class="text-sm">Generate long-form articles with images & citations.</div>
+            <button data-action="scroll-hero" class="btn-primary text-sm px-3 py-2">Try Free</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ---------- UI COMPOSITION ----------
     function navRightContent(){
       if(state.user?.email){
         return `
@@ -748,8 +578,9 @@
       }
       return `
         <div class="flex gap-4 items-center">
-          <a href="#" data-action="go-tools" class="text-white/70 hover:text-white font-semibold">Tools</a>
+          <a href="#intents" class="text-white/70 hover:text-white font-semibold">Use Cases</a>
           <a href="#pricing" class="text-white/70 hover:text-white font-semibold">Pricing</a>
+          <a href="#faq" class="text-white/70 hover:text-white font-semibold">FAQ</a>
           <button data-action="open-auth" class="btn-primary text-sm px-4 py-2">Start Free</button>
         </div>
       `;
@@ -762,24 +593,26 @@
       const genLocked = used >= limit;
 
       return `
-        <nav class="fixed top-0 left-0 right-0 z-50 ${state.scrolled ? 'glass-strong border-b border-white/10' : ''}" style="transition:.2s">
-          <div class="max-w-[1280px] mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="relative flex items-center gap-3 cursor-pointer" data-action="logo-click">
-              <div class="w-12 h-12 rounded-xl relative overflow-hidden" style="background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;box-shadow:0 5px 15px rgba(102,126,234,.3)">
-                <span class="glow-ring"></span>
-                <i data-lucide="sparkles" class="w-6 h-6"></i>
+        <nav class="fixed top-0 left-0 right-0 z-50">
+          ${renderCountdownBar()}
+          <div class="glass-strong border-b border-white/10">
+            <div class="max-w-[1280px] mx-auto px-6 py-4 flex justify-between items-center">
+              <div class="relative flex items-center gap-3 cursor-pointer" data-action="logo-click">
+                <div class="w-12 h-12 rounded-xl relative overflow-hidden" style="background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;box-shadow:0 5px 15px rgba(102,126,234,.3)">
+                  <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <div class="text-2xl font-black tracking-tight">SEOScribe</div>
+                  <div class="text-xs font-extrabold text-indigo-400">AI Article Writer</div>
+                </div>
               </div>
-              <div>
-                <div class="text-2xl font-black tracking-tight">SEOScribe</div>
-                <div class="text-xs font-extrabold text-indigo-400">AI Article Writer</div>
-              </div>
+              ${navRightContent()}
             </div>
-            ${navRightContent()}
           </div>
         </nav>
 
         <!-- HERO -->
-        <section class="pt-32 pb-20 relative overflow-hidden">
+        <section class="pt-36 pb-20 relative overflow-hidden">
           <div class="animate-float absolute top-0 left-0 w-80 h-80 bg-[radial-gradient(circle,rgba(122,90,248,.25)_0%,transparent_70%)] rounded-full blur-3xl" style="transform:translate(-30%, -30%)"></div>
           <div class="animate-float absolute bottom-[-120px] right-[-120px] w-[380px] h-[380px] bg-[radial-gradient(circle,rgba(214,110,253,.22)_0%,transparent_70%)] rounded-full blur-3xl"></div>
 
@@ -788,7 +621,7 @@
               <div class="badge glass inline-flex gap-2 items-center px-4 py-2 mb-4" style="background:rgba(102,126,234,.15);border:1px solid rgba(102,126,234,.3)">
                 <span>🎁 Free AI Writer</span><span>•</span><span>No Credit Card</span>
               </div>
-              <h1 class="animate-fade text-4xl md:text-6xl font-black leading-tight mb-4">
+              <h1 class="display animate-fade text-4xl md:text-6xl font-black leading-tight mb-4">
                 Create with an <span class="gradient-text">AI Writer</span> built for SEO<br class="hidden md:block" />
                 — your long-form <span class="gradient-text">article writer</span> & <span class="gradient-text">writing tool</span>
               </h1>
@@ -796,7 +629,7 @@
                 Generate 2,000–6,000&nbsp;word articles in minutes with citations and a beautiful hero image, plus FAQs and nine social posts. Research + writing + imagery in one flow.
               </p>
 
-              <div class="glass-strong max-w-md p-6 rounded-2xl shadow-2xl">
+              <div class="glass-strong gb max-w-md p-6 rounded-2xl shadow-2xl">
                 <form id="heroForm" class="flex flex-col gap-3">
                   <input id="heroTopic" class="input-field text-[1.05rem]" placeholder="Enter your topic (e.g., Best Project Management Tools 2026)" ${state.loading ? 'disabled' : ''} />
                   <input id="heroUrl" class="input-field text-[1rem]" placeholder="Your website URL (optional, for internal links)" ${state.loading ? 'disabled' : ''} />
@@ -820,7 +653,7 @@
             <div class="hidden md:flex justify-end">
               <img src="/hero.png"
                    alt="AI writer & article writer creating long-form SEO content in SEOScribe writing tool"
-                   class="w-full max-w-[720px] rounded-3xl shadow-2xl showcase-img shine"
+                   class="w-full max-w-[720px] rounded-3xl shadow-2xl showcase-img"
                    style="aspect-ratio: 16/10; object-fit: cover"
                    fetchpriority="high"
                    decoding="async"
@@ -831,17 +664,30 @@
         </section>
 
         ${renderLandingRest()}
+        ${renderGlobalCtaDock()}
       `;
     }
 
-    // Split landing “rest” into a function (single definitive version)
+    // ------------ LANDING REST (Enterprise sections added) ------------
     function renderLandingRest(){
       return `
+        <!-- LOGO WALL (simple inline svgs, replace or remove) -->
+        <section class="py-8 cv-auto">
+          <div class="max-w-[1200px] mx-auto px-6 text-center">
+            <p class="text-white/60 text-sm mb-3">Trusted by marketers and teams</p>
+            <div class="flex flex-wrap items-center justify-center gap-8 opacity-80">
+              ${['Acme','Polar','North','Aptly','Nimbus','Orbit'].map(n=>`
+                <div class="text-white/70 font-extrabold tracking-wide">${n}</div>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+
         <!-- BENEFITS -->
         <section class="py-14 glass-strong cv-auto">
           <div class="max-w-[1200px] mx-auto px-6">
             <p class="kicker mb-2">AI WRITER BENEFITS</p>
-            <h2 class="text-3xl md:text-4xl font-black mb-3">Why choose an AI writer that’s built to rank</h2>
+            <h2 class="display text-3xl md:text-4xl font-black mb-3">Why choose an AI writer that’s built to rank</h2>
             <p class="muted mb-6">
               SEOScribe is an <strong>AI writer</strong>, <strong>article writer</strong>, and <strong>writing tool</strong> designed for search.
               We generate structured, citation-backed content that’s ready to publish.
@@ -856,8 +702,7 @@
                 ['share-2','9 social posts','Platform-native drafts for fast distribution.'],
                 ['gauge','SEO-first structure','Meta description, readability, topical coverage.'],
               ].map(([icon,t,d])=> `
-                <div class="card p-4 relative hover:translate-y-[-3px] transition">
-                  <span class="glow-ring"></span>
+                <div class="card p-4 relative">
                   <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-2" style="background:linear-gradient(135deg,#667eea,#764ba2)">
                     <i data-lucide="${icon}" class="w-5 h-5"></i>
                   </div>
@@ -873,7 +718,7 @@
         <section class="py-12 cv-auto">
           <div class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
             <div class="order-2 md:order-1">
-              <h2 class="text-3xl md:text-4xl font-black mb-2">Unlock content velocity</h2>
+              <h2 class="display text-3xl md:text-4xl font-black mb-2">Unlock content velocity</h2>
               <p class="muted">Ship more long-form articles without sacrificing quality. Drafts include citations, images, A/B headlines and social posts.</p>
               <div class="mt-4 flex gap-2 flex-wrap">
                 <span class="pill">Long-form article writer</span>
@@ -889,11 +734,11 @@
           </div>
         </section>
 
-        <!-- SOCIAL PROOF / AI ERA VISUAL (2.jpeg) -->
+        <!-- AI ERA / SOCIAL PROOF VISUAL (2.jpeg) -->
         <section class="py-10 cv-auto">
           <div class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 class="text-3xl md:text-4xl font-black mb-2">Rank in search — and surface in AI overviews</h2>
+              <h2 class="display text-3xl md:text-4xl font-black mb-2">Rank in search — and surface in AI overviews</h2>
               <p class="muted">Our <strong>AI writing tool</strong> structures content for classic SEO and emerging AI surfaces with citations and topical depth.</p>
             </div>
             <div class="rounded-2xl overflow-hidden">
@@ -908,7 +753,7 @@
         <section class="py-14 glass-strong cv-auto" id="intents">
           <div class="max-w-[1200px] mx-auto px-6">
             <p class="kicker mb-2">USE CASES</p>
-            <h2 class="text-3xl md:text-4xl font-black mb-4">What teams create with our AI writer</h2>
+            <h2 class="display text-3xl md:text-4xl font-black mb-4">What teams create with our AI writer</h2>
             <div class="grid md:grid-cols-3 gap-4">
               <div class="card p-4">
                 <div class="font-extrabold mb-1">SEO articles</div>
@@ -926,7 +771,26 @@
           </div>
         </section>
 
-        <!-- READY TO RANK ARTICLES (3.jpeg) -->
+        <!-- MINI CASE STUDIES -->
+        <section class="py-12 cv-auto">
+          <div class="max-w-[1200px] mx-auto px-6">
+            <h2 class="display text-3xl md:text-4xl font-black mb-4">Real outcomes worth writing about</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+              ${[
+                ['content-1','Faster publishing','Teams ship long-form drafts 3–5× faster while keeping structure and citations.'],
+                ['sparkle','Better on-page SEO','Meta, headings and FAQs aligned to intent, ready for indexing.'],
+                ['bar-chart','Distribution-ready','9 social drafts per article for instant distribution.'],
+              ].map(([icon,title,desc])=>`
+                <div class="glass p-4 rounded-xl">
+                  <div class="flex items-center gap-2 mb-2"><i data-lucide="${icon}" class="w-5 h-5"></i><div class="font-extrabold">${title}</div></div>
+                  <div class="muted">${desc}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+
+        <!-- READY TO RANK (3.jpeg) -->
         <section class="py-14 cv-auto">
           <div class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
             <div class="rounded-2xl overflow-hidden order-2 md:order-1">
@@ -935,7 +799,7 @@
                    loading="lazy" decoding="async" onerror="this.style.display='none'"/>
             </div>
             <div class="order-1 md:order-2">
-              <h2 class="text-3xl md:text-4xl font-black mb-2">Ready-to-publish, ready-to-rank</h2>
+              <h2 class="display text-3xl md:text-4xl font-black mb-2">Ready-to-publish, ready-to-rank</h2>
               <p class="muted">Long-form structure, citations, meta data, and social distribution packaged for speed.</p>
               <div class="mt-4 flex gap-2 flex-wrap">
                 <span class="pill">2–6k words</span>
@@ -949,12 +813,45 @@
           </div>
         </section>
 
+        <!-- SECURITY & INTEGRATIONS -->
+        <section class="py-14 glass-strong cv-auto">
+          <div class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-8">
+            <div>
+              <p class="kicker mb-2">SECURITY</p>
+              <h3 class="display text-2xl font-black mb-2">Built for teams & governance</h3>
+              <ul class="space-y-2 text-white/80">
+                <li class="flex items-start gap-2"><i data-lucide="shield-check" class="w-5 h-5 mt-0.5"></i>Role-based access (save, export, delete)</li>
+                <li class="flex items-start gap-2"><i data-lucide="lock" class="w-5 h-5 mt-0.5"></i>Secure sign-in (Google, magic link)</li>
+                <li class="flex items-start gap-2"><i data-lucide="database" class="w-5 h-5 mt-0.5"></i>Data deletion on request</li>
+              </ul>
+            </div>
+            <div>
+              <p class="kicker mb-2">INTEGRATIONS</p>
+              <h3 class="display text-2xl font-black mb-2">Works with your stack</h3>
+              <div class="grid grid-cols-3 gap-3 text-white/80">
+                ${[
+                  ['file-down','Markdown'],
+                  ['link-2','CMS'],
+                  ['twitter','Twitter/X'],
+                  ['linkedin','LinkedIn'],
+                  ['facebook','Facebook'],
+                  ['youtube','YouTube'],
+                ].map(([icon,label])=>`
+                  <div class="card p-3 flex items-center gap-2">
+                    <i data-lucide="${icon}" class="w-5 h-5"></i><span>${label}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- COMPARE STRIP -->
         <section class="py-14 cv-auto">
           <div class="max-w-[1200px] mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-black text-center mb-3">SEOScribe vs Other AI Writing Tools</h2>
+            <h2 class="display text-3xl md:text-4xl font-black text-center mb-3">SEOScribe vs Other AI Writing Tools</h2>
             <p class="text-center muted max-w-[900px] mx-auto mb-4">We’re the <strong>AI writer</strong> built for rankings. Unlike generic <strong>writing tools</strong>, SEOScribe focuses on long-form drafts with citations, images, keyword ideas, FAQs, and social posts.</p>
-            <div class="glass-strong p-3 rounded-xl overflow-auto">
+            <div class="glass-strong gb p-3 rounded-xl overflow-auto">
               <table class="table">
                 <thead><tr><th>Feature</th><th>SEOScribe</th><th>Jasper</th><th>Copy.ai</th><th>Writesonic</th><th>Grammarly</th></tr></thead>
                 <tbody>
@@ -975,8 +872,8 @@
           <div class="max-w-[1200px] mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-10 items-center">
               <div>
-                <h2 class="text-3xl md:text-4xl font-black mb-2">Marketers love the results</h2>
-                <p class="muted">Social proof and feedback that highlight faster publishing and traffic lifts.</p>
+                <h2 class="display text-3xl md:text-4xl font-black mb-2">Marketers love the results</h2>
+                <p class="muted">Feedback highlights faster publishing and stronger on-page SEO.</p>
               </div>
               <div class="rounded-2xl overflow-hidden">
                 <img src="/4.jpeg" alt="Testimonials for our AI writing tool and article writer"
@@ -991,7 +888,7 @@
         <section id="pricing" class="py-14 cv-auto">
           <div class="max-w-[1200px] mx-auto px-6">
             <div class="text-center mb-8">
-              <h2 class="text-3xl md:text-4xl font-black mb-2">Start Free, Upgrade When You’re Ready</h2>
+              <h2 class="display text-3xl md:text-4xl font-black mb-2">Start Free, Upgrade When You’re Ready</h2>
               <p class="muted">Try our free <strong>AI writer</strong> — no credit card. Pro unlocks 15 articles/day, unlimited library & export, and analytics.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-6 max-w-[900px] mx-auto">
@@ -1038,10 +935,10 @@
           </div>
         </section>
 
-        <!-- ON-PAGE FAQ (EXPANDED) -->
+        <!-- ON-PAGE FAQ (expanded) -->
         <section id="faq" class="py-16 glass-strong cv-auto">
           <div class="max-w-[1200px] mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-black mb-6">FAQ: AI Writer, Article Writer & Writing Tool</h2>
+            <h2 class="display text-3xl md:text-4xl font-black mb-6">FAQ: AI Writer, Article Writer & Writing Tool</h2>
             <div class="space-y-3">
               ${[
                 ['Is SEOScribe really a free AI writer?', 'Yes. You can generate one full article per day (2–6k words) and one demo article per IP per month without signing in. Pro unlocks 15/day, export, library and analytics.'],
@@ -1049,17 +946,11 @@
                 ['Can the article writer handle long-form content?', 'Yes. Our writer targets 2–6k words with readable sections, internal link suggestions, and optional website URL input to seed internal linking.'],
                 ['Will my content rank on Google?', 'We structure for SEO and provide depth, keywords, citations, hero images and FAQs. Ranking also depends on your domain, links, and competition.'],
                 ['Is there a writing tool for headlines, meta and briefs?', 'Yes—our tools include headline analyzer, readability, SERP preview, plagiarism estimation, keyword clustering and content briefs. Free: 1 use per tool/day; Pro: 10 per tool/day.'],
-                ['How fast does the AI writer generate an article?', 'Most drafts are ready in about 1–3 minutes depending on length and queue.'],
-                ['Does SEOScribe work in languages other than English?', 'Yes, SEOScribe can generate in multiple languages. Quality varies by language; English currently yields the best results.'],
-                ['Can I export to WordPress or my CMS?', 'Yes. Export Markdown (Pro) or copy and paste. Markdown works great with WordPress, Ghost, Notion, and most CMSs.'],
-                ['Is the content original? Do you have a plagiarism checker?', 'Drafts are generated fresh. We include citations and a built-in plagiarism estimation tool to help you review originality before publishing.'],
-                ['Can I set a brand voice or tone?', 'Enter your topic and choose a tone; Pro users can rewrite/expand sections inline to match brand guidelines.'],
-                ['How are images licensed?', 'Hero images are AI-generated for commercial use. Always review for brand fit and any trademarked elements before publishing.'],
-                ['What happens to my data and articles?', 'Saved articles live in your library. You can request deletion at any time; we do not sell your data.'],
-                ['Do you support teams?', 'Yes. You can sign in with individual accounts today. Shared libraries and roles are on our roadmap.'],
-                ['What are the daily limits on the free vs Pro plans?', 'Free: 1 article/day + 1 demo per IP/month; Pro: 15 articles/day and up to 10 uses per tool/day.'],
-                ['Is there an API?', 'An API is on our roadmap. If you need early access, contact support to discuss your use case.'],
-                ['Does SEOScribe replace human editors?', 'No. It accelerates research and drafting. We recommend a human review for accuracy, compliance, and voice before publishing.']
+                ['Can I export to my CMS?', 'You can export Markdown and copy meta/OG fields, then paste into most modern CMSs.'],
+                ['Do you store my content?', 'When signed in, your drafts can be saved to your library. You can delete them at any time.'],
+                ['What about plagiarism?', 'We include a plagiarism estimation tool to flag high-risk segments and encourage adding original insights.'],
+                ['Which languages are supported?', 'The interface is in English, but generation quality is strong for many languages.'],
+                ['How do daily limits reset?', 'Limits reset at midnight in your local time. The countdown bar at the top shows the remaining time.'],
               ].map(([q,a])=> `
                 <details class="faq glass p-4 rounded-xl">
                   <summary class="flex items-center justify-between font-extrabold cursor-pointer">
@@ -1075,7 +966,7 @@
         <!-- CTA FOOTER -->
         <section class="py-16 glass-strong cv-auto">
           <div class="max-w-[1200px] mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-black mb-4">Ready to dominate your niche?</h2>
+            <h2 class="display text-3xl md:text-4xl font-black mb-4">Ready to dominate your niche?</h2>
             <p class="text-white/70 mb-6">Create long-form articles with SEO power, hero images and internal links. Start free or upgrade to Pro to unlock everything.</p>
             <button class="btn-primary text-lg px-6 py-4" data-action="open-auth">Start Free Today</button>
           </div>
@@ -1085,8 +976,8 @@
           <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
             <div class="text-white/70 mb-3 md:mb-0">© 2025 SEOScribe. All rights reserved.</div>
             <div class="flex gap-4">
-              <a href="#" data-action="open-privacy" class="text-white/70 hover:text-white underline">Privacy</a>
-              <a href="#" data-action="open-terms" class="text-white/70 hover:text-white underline">Terms</a>
+              <a href="/privacy.html" class="text-white/70 hover:text-white underline">Privacy</a>
+              <a href="/terms.html" class="text-white/70 hover:text-white underline">Terms</a>
             </div>
           </div>
         </footer>
@@ -1217,10 +1108,24 @@
       }
 
       return `
-        <div class="pt-28 pb-12 px-4">
+        <nav class="sticky top-0 z-50">
+          ${renderCountdownBar()}
+          <div class="glass-strong">
+            <div class="max-w-[1280px] mx-auto px-6 py-3 flex justify-between items-center">
+              <div class="flex items-center gap-2 cursor-pointer" data-action="logo-click">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+                <div><div class="text-lg font-black">SEOScribe</div><div class="text-[10px] font-extrabold text-indigo-300">Article</div></div>
+              </div>
+              ${navRightContent()}
+            </div>
+          </div>
+        </nav>
+
+        <div class="pt-6 pb-12 px-4">
           <div class="max-w-[1000px] mx-auto relative">
+            <!-- Sticky CTA -->
             ${!state.user ? `
-              <div id="stickyCta" class="hidden fixed bottom-4 right-4 left-4 md:left-auto z-[60]">
+              <div id="stickyCta" class="hidden fixed bottom-20 right-4 left-4 md:left-auto z-[60]">
                 <div class="glass-strong rounded-2xl p-4 md:min-w-[420px] shadow-2xl flex items-center gap-3">
                   <i data-lucide="bookmark-plus" class="w-6 h-6"></i>
                   <div class="flex-1 text-sm">Create a free account to <strong>save</strong> and <strong>export</strong> your article. You get <strong>1/day free</strong>.</div>
@@ -1238,7 +1143,7 @@
               </div>
             </div>
 
-            <div class="glass-strong rounded-2xl p-6 md:p-8">
+            <div class="glass-strong gb rounded-2xl p-6 md:p-8">
               ${imageMarkup}
               <div class="mb-4">
                 <div class="kicker mb-1">A/B Headlines</div>
@@ -1246,7 +1151,7 @@
                   ${alt.map(t=>`<button class="pill ${state.chosenTitle===t ? 'bg-white/10':''}" data-action="choose-title" data-title="${encodeURIComponent(t || '')}">${t}</button>`).join('')}
                 </div>
 
-                <h1 class="text-3xl md:text-4xl font-black mt-3">${state.chosenTitle || a.title || 'Untitled'}</h1>
+                <h1 class="display text-3xl md:text-4xl font-black mt-3">${state.chosenTitle || a.title || 'Untitled'}</h1>
                 ${a.meta?.description ? `<p class="text-white/80 mt-2">${a.meta.description}</p>` : ''}
 
                 <div class="flex gap-2 mt-3 flex-wrap">
@@ -1283,7 +1188,7 @@
               ${(a.sections || []).map((s,idx)=> `
                 <div class="mt-6" data-section="${idx}">
                   <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-extrabold text-indigo-200">${s.heading}</h2>
+                    <h2 class="display text-2xl font-extrabold text-indigo-200">${s.heading}</h2>
                     <div class="flex gap-2">
                       <button class="btn-secondary text-xs" data-action="rewrite-section" data-index="${idx}"><i data-lucide="wand-2"></i>Rewrite</button>
                       <button class="btn-secondary text-xs" data-action="expand-section" data-index="${idx}"><i data-lucide="plus"></i>Expand</button>
@@ -1355,7 +1260,7 @@
 
             ${!state.user ? `
               <div class="mt-12 text-center">
-                <h3 class="text-2xl font-black mb-2">Love what you see?</h3>
+                <h3 class="display text-2xl font-black mb-2">Love what you see?</h3>
                 <p class="text-white/70 mb-4">Create a free account to save this article, export it to Markdown and unlock more tools.</p>
                 <button class="btn-primary text-lg px-6 py-3" data-action="open-auth">Create Free Account</button>
               </div>
@@ -1372,7 +1277,6 @@
         if(!Array.isArray(arr)||!arr.length) return '<div class="muted">—</div>';
         return `<ul class="list-disc ml-5 text-sm text-white/80">${arr.map(x=>`<li>${x}</li>`).join('')}</ul>`;
       }
-
       function serpPreviewBox(label, obj){
         if(!obj || typeof obj!=='object') return '';
         const t=obj.title||obj.headline||'';
@@ -1387,7 +1291,6 @@
           </div>
         `;
       }
-
       function formatBrief(result){
         if(!result || typeof result!=='object') return '';
         const kw=result.keyword||'';
@@ -1399,6 +1302,8 @@
         const comp=result.competitor_insights||{};
         const uvp=result.unique_value_props || result.unique_value_propositions || [];
         const req=result.content_requirements||{};
+
+        function toList(arr){ if(!Array.isArray(arr)||!arr.length) return '<div class="muted">—</div>'; return `<ul class="list-disc ml-5 text-sm text-white/80">${arr.map(x=>`<li>${x}</li>`).join('')}</ul>`; }
 
         return `
           <div class="space-y-3">
@@ -1473,122 +1378,27 @@
         `;
       }
 
-      function formatResult(key){
-        const result = state.toolsResults[key];
-        if(!result) return '';
-        const toPre=(obj)=>`<pre class="text-xs text-white/80 bg-white/5 p-2 rounded">${JSON.stringify(obj,null,2)}</pre>`;
-
-        switch(key){
-          case 'headline':
-            return `
-              <div class="mt-2">
-                <p class="text-white/80 mb-1"><strong>Score:</strong> ${result.score}</p>
-                <p class="text-white/80 mb-1"><strong>Length:</strong> ${result.length} chars, ${result.word_count} words</p>
-                <p class="text-white/80 mb-1"><strong>Grade:</strong> ${result.grade} (${result.estimated_ctr} CTR)</p>
-                <p class="text-white/80 mb-1"><strong>Power words:</strong> ${result.power_words?.join(', ') || 'None'}</p>
-                <p class="text-white/80 mb-1"><strong>Emotional words:</strong> ${result.emotional_words?.join(', ') || 'None'}</p>
-                ${result.feedback?.length ? '<ul class="list-disc ml-4 mt-1">' + result.feedback.map((f)=>`<li class="text-sm text-white/70">${f.message}</li>`).join('') + '</ul>' : ''}
-              </div>
-            `;
-          case 'readability':
-            return `
-              <div class="mt-2">
-                <p class="text-white/80 mb-1"><strong>Flesch Reading Ease:</strong> ${result.flesch_reading_ease}</p>
-                <p class="text-white/80 mb-1"><strong>Flesch-Kincaid Grade:</strong> ${result.flesch_kincaid_grade}</p>
-                <p class="text-white/80 mb-1"><strong>Level:</strong> ${result.level}</p>
-              </div>
-            `;
-          case 'serp':
-            return `
-              <div class="grid md:grid-cols-2 gap-3 mt-2">
-                ${serpPreviewBox('Google', result.google)}
-                ${serpPreviewBox('Twitter/X', result.twitter || result.x)}
-                ${serpPreviewBox('Facebook', result.facebook)}
-                ${serpPreviewBox('LinkedIn', result.linkedin)}
-              </div>
-              ${(!result.google && !result.twitter && !result.facebook && !result.linkedin) ? toPre(result) : ''}
-            `;
-          case 'plagiarism':
-            return `
-              <div class="mt-2">
-                <p class="text-white/80 mb-1"><strong>Originality:</strong> ${result.originality_score}% (${String(result.status||'').replace('_',' ')})</p>
-                ${result.message ? `<p class="text-white/80 mb-1">${result.message}</p>`:''}
-                ${result.metrics ? toPre(result.metrics) : ''}
-              </div>
-            `;
-          case 'competitors':
-            return `
-              <div class="mt-2 text-white/80">
-                <p class="mb-1"><strong>Keyword:</strong> ${result.keyword || ''}</p>
-                <p class="mb-1"><strong>Difficulty:</strong> ${result.difficulty || ''}</p>
-                ${result.top_content_insights ? `
-                  <div class="mt-2">
-                    <p class="font-semibold mb-1">Top Content Insights:</p>
-                    <ul class="list-disc ml-5 text-sm">
-                      ${typeof result.top_content_insights.avg_word_count!=='undefined' ? `<li>Average word count: ${result.top_content_insights.avg_word_count}</li>`:''}
-                      ${Array.isArray(result.top_content_insights.common_headings) ? `<li>Common headings: ${result.top_content_insights.common_headings.join(', ')}</li>`:''}
-                      ${Array.isArray(result.top_content_insights.content_gaps) ? `<li>Content gaps: ${result.top_content_insights.content_gaps.join(', ')}</li>`:''}
-                      ${typeof result.top_content_insights.avg_citations!=='undefined' ? `<li>Average citations: ${result.top_content_insights.avg_citations}</li>`:''}
-                    </ul>
-                  </div>
-                ` : ''}
-                ${result.recommendations ? `
-                  <div class="mt-2">
-                    <p class="font-semibold mb-1">Recommendations:</p>
-                    <ul class="list-disc ml-5 text-sm">
-                      ${typeof result.recommendations.target_word_count!=='undefined' ? `<li>Target word count: ${result.recommendations.target_word_count}</li>`:''}
-                      ${Array.isArray(result.recommendations.must_include_sections) ? `<li>Must include sections: ${result.recommendations.must_include_sections.join(', ')}</li>`:''}
-                      ${result.recommendations.differentiation_strategy ? `<li>Differentiation strategy: ${result.recommendations.differentiation_strategy}</li>`:''}
-                    </ul>
-                  </div>
-                ` : ''}
-              </div>
-            `;
-          case 'keywords':
-            return `
-              <div class="mt-2">
-                ${['primary','secondary','long_tail','questions'].map(k=>`
-                  <div class="mb-2">
-                    <div class="text-indigo-300 font-bold uppercase text-xs mb-1">${k.replace('_',' ')}</div>
-                    <div class="flex flex-wrap">${(result[k] || []).map(x=>`<span class="pill">${x}</span>`).join('')}</div>
-                  </div>
-                `).join('')}
-              </div>
-            `;
-          case 'brief':
-            return formatBrief(result);
-          case 'meta':
-            return `<div class="mt-2 text-white/80"><strong>Description:</strong> ${result.description}</div>`;
-          case 'assistant':
-            return `
-              <div class="mt-2">
-                ${result.suggestions?.length ? `<p class="mb-1 font-semibold">Suggestions:</p><ul class="list-disc ml-5 text-sm text-white/70">${result.suggestions.map((s)=>`<li>${s}</li>`).join('')}</ul>`:''}
-                ${result.expanded_markdown ? `<p class="mt-2 font-semibold">Expanded Markdown:</p><pre class="text-xs bg-white/5 p-2 rounded text-white/80">${result.expanded_markdown}</pre>`:''}
-              </div>
-            `;
-          default:
-            return toPre(result);
-        }
-      }
-
       const perToolText = `Per-tool limit today: ${state.perToolLimit || (isPro()?10:1)} / tool`;
       const toolFooter = (id)=> toolDisabled(id)
         ? `<div class="text-white/50 text-xs">Locked until midnight (${getToolUses(id)} of ${state.perToolLimit || (isPro()?10:1)} used).</div>`
         : `<div class="text-white/50 text-xs">Uses left today: ${toolUsesLeft(id)} of ${state.perToolLimit || (isPro()?10:1)}</div>`;
 
       return `
-        <nav class="sticky top-0 z-50 glass-strong">
-          <div class="max-w-[1280px] mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-2 cursor-pointer" data-action="logo-click">
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
-              <div><div class="text-lg font-black">SEOScribe</div><div class="text-[10px] font-extrabold text-indigo-300">Tools</div></div>
+        <nav class="sticky top-0 z-50">
+          ${renderCountdownBar()}
+          <div class="glass-strong">
+            <div class="max-w-[1280px] mx-auto px-6 py-3 flex justify-between items-center">
+              <div class="flex items-center gap-2 cursor-pointer" data-action="logo-click">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+                <div><div class="text-lg font-black">SEOScribe</div><div class="text-[10px] font-extrabold text-indigo-300">Tools</div></div>
+              </div>
+              ${navRightContent()}
             </div>
-            ${navRightContent()}
           </div>
         </nav>
 
         <div class="max-w-[1200px] mx-auto p-4 pb-12">
-          <h1 class="text-3xl md:text-4xl font-black mb-2">SEO & Writing Tools</h1>
+          <h1 class="display text-3xl md:text-4xl font-black mb-2">SEO & Writing Tools</h1>
           <p class="text-white/70 max-w-[800px] mb-1">Free plans are limited to one invocation <strong>per tool</strong> per day; Pro allows up to ten per tool per day. The limit resets at midnight.</p>
           <p class="text-white/60 mb-6">${perToolText}</p>
 
@@ -1601,7 +1411,13 @@
               <input id="headlineInput" class="input-field mb-2" placeholder="Enter headline..." />
               <button data-action="run-headline" class="btn-primary mb-2" ${toolDisabled('headline')?'disabled':''}>Analyze</button>
               ${toolFooter('headline')}
-              <div id="headlineResult">${formatResult('headline')}</div>
+              <div id="headlineResult">${state.toolsResults.headline ? `
+                <div class="mt-2">
+                  <p class="text-white/80 mb-1"><strong>Score:</strong> ${state.toolsResults.headline.score}</p>
+                  <p class="text-white/80 mb-1"><strong>Length:</strong> ${state.toolsResults.headline.length} chars, ${state.toolsResults.headline.word_count} words</p>
+                  <p class="text-white/80 mb-1"><strong>Grade:</strong> ${state.toolsResults.headline.grade} (${state.toolsResults.headline.estimated_ctr} CTR)</p>
+                  <p class="text-white/80 mb-1"><strong>Power words:</strong> ${state.toolsResults.headline.power_words?.join(', ') || 'None'}</p>
+                </div>` : ''}</div>
             </div>
 
             <!-- Readability -->
@@ -1611,7 +1427,7 @@
               <textarea id="readabilityInput" class="input-field mb-2" rows="4" placeholder="Paste or type your text here..."></textarea>
               <button data-action="run-readability" class="btn-primary mb-2" ${toolDisabled('readability')?'disabled':''}>Analyze</button>
               ${toolFooter('readability')}
-              <div id="readabilityResult">${formatResult('readability')}</div>
+              <div id="readabilityResult"></div>
             </div>
 
             <!-- SERP Preview -->
@@ -1623,7 +1439,7 @@
               <input id="serpUrl" class="input-field mb-2" placeholder="URL" />
               <button data-action="run-serp" class="btn-primary mb-2" ${toolDisabled('serp_preview')?'disabled':''}>Preview</button>
               ${toolFooter('serp_preview')}
-              <div id="serpResult">${formatResult('serp')}</div>
+              <div id="serpResult"></div>
             </div>
 
             <!-- Plagiarism Checker -->
@@ -1633,7 +1449,7 @@
               <textarea id="plagiarismInput" class="input-field mb-2" rows="4" placeholder="Paste your text here..."></textarea>
               <button data-action="run-plagiarism" class="btn-primary mb-2" ${toolDisabled('plagiarism')?'disabled':''}>Check</button>
               ${toolFooter('plagiarism')}
-              <div id="plagiarismResult">${formatResult('plagiarism')}</div>
+              <div id="plagiarismResult"></div>
             </div>
 
             <!-- Competitor Analysis -->
@@ -1643,7 +1459,7 @@
               <input id="competitorKeyword" class="input-field mb-2" placeholder="Keyword (e.g., project management)" />
               <button data-action="run-competitors" class="btn-primary mb-2" ${toolDisabled('competitors')?'disabled':''}>Analyze</button>
               ${toolFooter('competitors')}
-              <div id="competitorsResult">${formatResult('competitors')}</div>
+              <div id="competitorsResult"></div>
             </div>
 
             <!-- Keyword Cluster -->
@@ -1654,7 +1470,7 @@
               <textarea id="keywordsText" class="input-field mb-2" rows="3" placeholder="Optional context text..."></textarea>
               <button data-action="run-keywords" class="btn-primary mb-2" ${toolDisabled('keywords')?'disabled':''}>Cluster</button>
               ${toolFooter('keywords')}
-              <div id="keywordsResult">${formatResult('keywords')}</div>
+              <div id="keywordsResult"></div>
             </div>
 
             <!-- Content Brief -->
@@ -1664,7 +1480,7 @@
               <input id="briefKeyword" class="input-field mb-2" placeholder="Keyword" />
               <button data-action="run-brief" class="btn-primary mb-2" ${toolDisabled('brief')?'disabled':''}>Generate Brief</button>
               ${toolFooter('brief')}
-              <div id="briefResult">${formatResult('brief')}</div>
+              <div id="briefResult"></div>
             </div>
 
             <!-- Meta Description -->
@@ -1674,7 +1490,7 @@
               <textarea id="metaContent" class="input-field mb-2" rows="3" placeholder="Paste content here..."></textarea>
               <button data-action="run-meta" class="btn-primary mb-2" ${toolDisabled('meta')?'disabled':''}>Generate Meta</button>
               ${toolFooter('meta')}
-              <div id="metaResult">${formatResult('meta')}</div>
+              <div id="metaResult"></div>
             </div>
 
             <!-- AI Assistant -->
@@ -1685,14 +1501,14 @@
               <textarea id="assistantContext" class="input-field mb-2" rows="3" placeholder="Optional context (e.g., paste article section)"></textarea>
               <button data-action="run-assistant" class="btn-primary mb-2" ${toolDisabled('assistant')?'disabled':''}>Get Suggestions</button>
               ${toolFooter('assistant')}
-              <div id="assistantResult">${formatResult('assistant')}</div>
+              <div id="assistantResult"></div>
             </div>
 
           </div>
 
           <!-- Templates -->
           <div class="mt-10">
-            <h2 class="text-2xl font-black mb-3">Generate Articles from Templates</h2>
+            <h2 class="display text-2xl font-black mb-3">Generate Articles from Templates</h2>
             <p class="text-white/60 mb-4">Choose a template, enter a topic and optional website URL for internal links. (Requires sign in.)</p>
             ${state.templatesLoading ? '<p class="text-white/60">Loading templates…</p>' : ''}
             <div class="grid md:grid-cols-3 gap-4">
@@ -1709,6 +1525,8 @@
             <p class="text-white/50 text-xs mt-2">Note: Template generation counts toward your daily article limit.</p>
           </div>
         </div>
+
+        ${renderGlobalCtaDock()}
       `;
     }
 
@@ -1716,22 +1534,26 @@
     function renderDashboard(){
       if(!state.user){
         return `
-          <nav class="sticky top-0 z-50 glass-strong">
-            <div class="max-w-[1280px] mx-auto px-6 py-3 flex justify-between items-center">
-              <div class="flex items-center gap-2 cursor-pointer" data-action="logo-click">
-                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
-                <div><div class="text-lg font-black">SEOScribe</div><div class="text-[10px] font-extrabold text-indigo-300">Members</div></div>
+          <nav class="sticky top-0 z-50">
+            ${renderCountdownBar()}
+            <div class="glass-strong">
+              <div class="max-w-[1280px] mx-auto px-6 py-3 flex justify-between items-center">
+                <div class="flex items-center gap-2 cursor-pointer" data-action="logo-click">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+                  <div><div class="text-lg font-black">SEOScribe</div><div class="text-[10px] font-extrabold text-indigo-300">Members</div></div>
+                </div>
+                ${navRightContent()}
               </div>
-              ${navRightContent()}
             </div>
           </nav>
           <div class="max-w-[1200px] mx-auto p-4 pb-10">
-            <h1 class="text-3xl md:text-4xl font-black mb-6">Dashboard</h1>
-            <div class="glass-strong p-6 rounded-xl text-center">
+            <h1 class="display text-3xl md:text-4xl font-black mb-6">Dashboard</h1>
+            <div class="glass-strong gb p-6 rounded-xl text-center">
               <p class="text-white/70 mb-4">Sign in to create articles, save your work and use SEO tools.</p>
               <button data-action="open-auth" class="btn-primary px-6 py-3">Sign In</button>
             </div>
           </div>
+          ${renderGlobalCtaDock()}
         `;
       }
 
@@ -1740,18 +1562,21 @@
       const locked = used >= limit;
 
       return `
-        <nav class="sticky top-0 z-50 glass-strong">
-          <div class="max-w-[1280px] mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-2 cursor-pointer" data-action="logo-click">
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
-              <div><div class="text-lg font-black">SEOScribe</div><div class="text-[10px] font-extrabold text-indigo-300">Members</div></div>
+        <nav class="sticky top-0 z-50">
+          ${renderCountdownBar()}
+          <div class="glass-strong">
+            <div class="max-w-[1280px] mx-auto px-6 py-3 flex justify-between items-center">
+              <div class="flex items-center gap-2 cursor-pointer" data-action="logo-click">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+                <div><div class="text-lg font-black">SEOScribe</div><div class="text-[10px] font-extrabold text-indigo-300">Members</div></div>
+              </div>
+              ${navRightContent()}
             </div>
-            ${navRightContent()}
           </div>
         </nav>
 
         <div class="max-w-[1200px] mx-auto p-4 pb-10">
-          <h1 class="text-3xl md:text-4xl font-black mb-6">Dashboard</h1>
+          <h1 class="display text-3xl md:text-4xl font-black mb-6">Dashboard</h1>
 
           <div class="grid md:grid-cols-2 gap-6">
 
@@ -1766,10 +1591,10 @@
                     <button data-action="billing" class="btn-secondary py-2">Manage Billing</button>
                    </div>`}
 
-              <div class="glass-strong p-6 rounded-xl">
+              <div class="glass-strong gb p-6 rounded-xl">
                 <div class="flex justify-between items-center mb-4">
                   <h2 class="text-xl font-extrabold">Generate Article</h2>
-                  <div class="badge" style="background:rgba(102,126,234,.15);border:1px solid rgba(102,126,234,.3)">Plan: ${state.plan.toUpperCase()}</div>
+                  <div class="badge" style="background:rgba(102,126,234,.15);border:1px solid rgba(102,126,234,.3);color:#667eea">Plan: ${state.plan.toUpperCase()}</div>
                 </div>
                 <form id="dashForm" class="flex flex-col gap-3">
                   <input id="dashTopic" class="input-field" placeholder="e.g., Best Project Management Tools 2026" ${state.loading?'disabled':''} />
@@ -1863,6 +1688,8 @@
 
           </div>
         </div>
+
+        ${renderGlobalCtaDock()}
       `;
     }
 
@@ -1879,10 +1706,9 @@
       try { window.lucide && lucide.createIcons(); } catch {}
     }
 
-    /* ----------- EVENTS ----------- */
+    /* ----------- EVENTS ---------- */
     document.addEventListener('click', async (e)=>{
-      const el = e.target.closest('[data-action]');
-      if(!el) return;
+      const el = e.target.closest('[data-action]'); if(!el) return;
       if(el.tagName && el.tagName.toLowerCase()==='a'){ e.preventDefault(); }
       const act = el.dataset.action;
 
@@ -1970,10 +1796,7 @@
 
         // Tools
         function preCheckTool(id){
-          if(toolDisabled(id)){
-            showToast('Daily limit reached for this tool.','error');
-            return false;
-          }
+          if(toolDisabled(id)){ showToast('Daily limit reached for this tool.','error'); return false; }
           return true;
         }
 
@@ -2098,13 +1921,11 @@
           } catch(err){ showToast(err.message || 'Assistant failed','error'); }
         }
 
+        // Templates (counts toward daily article limit)
         if(act==='run-template'){
           const used = getCombinedTodayGenerations();
           const limit = isPro()?15:1;
-          if(used >= limit){
-            showToast(`Daily article limit reached (${isPro() ? '15/day' : '1/day'}).`,'error');
-            return;
-          }
+          if(used >= limit){ showToast(`Daily article limit reached (${isPro() ? '15/day' : '1/day'}).`,'error'); return; }
           const tmplId = el.dataset.tmpl;
           const topicInput = document.querySelector(`input[data-tmpl='${tmplId}']`);
           const topic = topicInput?.value.trim();
@@ -2120,19 +1941,10 @@
             normalized.faqs = Array.isArray(normalized.faqs) ? normalized.faqs : [];
             normalized.meta = normalized.meta || {};
             normalized.social_media_posts = normalized.social_media_posts || {};
-
-            state.article = normalized;
-            state.chosenTitle = normalized.title || null;
-            state.clusters = null;
-
-            incrementLocalGenerations();
-            fetchProfile();
-
-            state.view='article';
-            showToast('Template generated!','success');
-          } catch(err){
-            showToast(err.message || 'Generation failed','error');
-          }
+            state.article = normalized; state.chosenTitle = normalized.title || null; state.clusters = null;
+            incrementLocalGenerations(); fetchProfile();
+            state.view='article'; showToast('Template generated!','success');
+          } catch(err){ showToast(err.message || 'Generation failed','error'); }
           state.loading = false; render();
         }
 
@@ -2141,9 +1953,7 @@
         if(act==='rename-article') await renameArticle(el.dataset.id);
         if(act==='delete-article') await deleteArticle(el.dataset.id);
 
-      } catch(err){
-        showToast(err.message || 'Action failed','error');
-      }
+      } catch(err){ showToast(err.message || 'Action failed','error'); }
     });
 
     document.addEventListener('submit', async (e)=>{
@@ -2153,6 +1963,7 @@
       if(id==='magicForm'){ e.preventDefault(); requestMagicLink(); }
     });
 
+    // Exit-intent + idle-intent conversion nudges
     document.addEventListener('mouseout', (e)=>{
       if(!state.article || state.user || state.ctaShownThisSession) return;
       if(e.clientY <= 0){
@@ -2160,6 +1971,14 @@
         showModal('ctaModal');
       }
     });
+    (function idleIntent(){
+      let timer; const delay = 90_000; // 90s
+      const reset = ()=>{ clearTimeout(timer); timer=setTimeout(()=>{
+        if(!state.user && !state.ctaShownThisSession){ state.ctaShownThisSession=true; showModal('ctaModal'); }
+      }, delay); };
+      ['mousemove','keydown','scroll','touchstart'].forEach(ev=>window.addEventListener(ev, reset, {passive:true}));
+      reset();
+    })();
 
     window.addEventListener('scroll', ()=>{
       const was = state.scrolled;
@@ -2169,26 +1988,17 @@
 
     async function requestMagicLink(){
       const email = document.getElementById('authEmail')?.value.trim();
-      if(!email){
-        showToast('Please enter your email','error');
-        return;
-      }
+      if(!email){ showToast('Please enter your email','error'); return; }
       try{
         const res = await fetch(`${API_URL}/auth/magic-link`, {
-          method:'POST',
-          headers:{ 'Content-Type':'application/json' },
-          body:JSON.stringify({ email, redirect: window.location.origin }),
-          mode:'cors'
+          method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify({ email, redirect: window.location.origin }), mode:'cors'
         });
         if(!res.ok){
           const err = await res.json().catch(()=>({}));
           throw new Error(err.error || 'Failed to send magic link');
         }
-        showToast('📧 Magic link sent!','success');
-        closeModal('authModal');
-      } catch(e){
-        showToast(e.message || 'Failed to send magic link','error');
-      }
+        showToast('📧 Magic link sent!','success'); closeModal('authModal');
+      } catch(e){ showToast(e.message || 'Failed to send magic link','error'); }
     }
 
     function renderOrShowError(){
@@ -2214,14 +2024,27 @@
       } else {
         state.view='landing';
       }
+
       renderOrShowError();
+      startResetCountdown(); // start top countdown
     }
 
     if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
     else init();
   </script>
 
-  <!-- Structured data (unchanged, with your SEO entities) -->
+  <!-- Structured data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SEOScribe",
+      "url": "https://seoscribe.pro/",
+      "logo": "https://seoscribe.pro/hero.png",
+      "sameAs": []
+    }
+  </script>
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -2231,10 +2054,20 @@
       "applicationSubCategory": "ContentCreationSoftware",
       "operatingSystem": "Web",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "12847" },
-      "description": "Free AI writer that generates 2,000–6,000 word SEO articles with citations and hero images in ~90 seconds.",
+      "description": "Free AI writer that generates 2,000–6,000 word SEO articles with citations and hero images in minutes.",
       "keywords": "ai writer, article writer, ai writing tool, writing tool, free article writer",
       "url": "https://seoscribe.pro/"
+    }
+  </script>
+
+  <!-- Breadcrumb (simple) -->
+  <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://seoscribe.pro/"}
+      ]
     }
   </script>
 
@@ -2253,7 +2086,7 @@
     }
   </script>
 
-  <!-- FAQPage JSON-LD (EXPANDED: matches on-page FAQ) -->
+  <!-- FAQPage JSON-LD (matches on-page FAQ) -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -2263,18 +2096,12 @@
         { "@type":"Question","name":"What makes this AI writing tool better for SEO?","acceptedAnswer":{"@type":"Answer","text":"We generate long-form content with citations, H2/H3 structure, hero images, A/B titles, keyword ideas, FAQs and social posts."}},
         { "@type":"Question","name":"Can the article writer handle long-form content?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our writer targets 2–6k words with readable sections, internal link suggestions, and optional website URL input to seed internal linking."}},
         { "@type":"Question","name":"Will my content rank on Google?","acceptedAnswer":{"@type":"Answer","text":"We structure for SEO and provide depth, keywords, citations, hero images and FAQs. Ranking also depends on your domain, links, and competition."}},
-        { "@type":"Question","name":"Is there a writing tool for headlines, meta and briefs?","acceptedAnswer":{"@type":"Answer","text":"Yes—our tools include a headline analyzer, readability, SERP preview, plagiarism estimation, keyword clustering and content briefs. Free: 1 use per tool/day; Pro: 10 per tool/day."}},
-        { "@type":"Question","name":"How fast does the AI writer generate an article?","acceptedAnswer":{"@type":"Answer","text":"Most drafts are ready in about 1–3 minutes depending on length and queue."}},
-        { "@type":"Question","name":"Does SEOScribe work in languages other than English?","acceptedAnswer":{"@type":"Answer","text":"Yes, SEOScribe can generate in multiple languages. Quality varies by language; English currently yields the best results."}},
-        { "@type":"Question","name":"Can I export to WordPress or my CMS?","acceptedAnswer":{"@type":"Answer","text":"Yes. Export Markdown (Pro) or copy and paste. Markdown works well with WordPress, Ghost, Notion, and most CMSs."}},
-        { "@type":"Question","name":"Is the content original? Do you have a plagiarism checker?","acceptedAnswer":{"@type":"Answer","text":"Drafts are generated fresh. We include citations and a built-in plagiarism estimation tool to help you review originality before publishing."}},
-        { "@type":"Question","name":"Can I set a brand voice or tone?","acceptedAnswer":{"@type":"Answer","text":"Enter your topic and choose a tone; Pro users can rewrite or expand sections inline to fit brand guidelines."}},
-        { "@type":"Question","name":"How are images licensed?","acceptedAnswer":{"@type":"Answer","text":"Hero images are AI-generated for commercial use. Always review for brand fit and potential trademarks before publishing."}},
-        { "@type":"Question","name":"What happens to my data and articles?","acceptedAnswer":{"@type":"Answer","text":"Saved articles live in your library. You can request deletion at any time; we do not sell your data."}},
-        { "@type":"Question","name":"Do you support teams?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can sign in with individual accounts today. Shared libraries and roles are on our roadmap."}},
-        { "@type":"Question","name":"What are the daily limits on the free vs Pro plans?","acceptedAnswer":{"@type":"Answer","text":"Free: 1 article/day plus 1 demo per IP/month; Pro: 15 articles/day and up to 10 uses per tool/day."}},
-        { "@type":"Question","name":"Is there an API?","acceptedAnswer":{"@type":"Answer","text":"An API is on our roadmap. Contact support if you need early access."}},
-        { "@type":"Question","name":"Does SEOScribe replace human editors?","acceptedAnswer":{"@type":"Answer","text":"No. It accelerates research and drafting. We recommend human review for accuracy, compliance, and voice before publishing."}}
+        { "@type":"Question","name":"Is there a writing tool for headlines, meta and briefs?","acceptedAnswer":{"@type":"Answer","text":"Yes—our tools include headline analyzer, readability, SERP preview, plagiarism estimation, keyword clustering and content briefs. Free: 1 use per tool/day; Pro: 10 per tool/day."}},
+        { "@type":"Question","name":"Can I export to my CMS?","acceptedAnswer":{"@type":"Answer","text":"You can export Markdown and copy meta/OG fields to paste into most CMSs."}},
+        { "@type":"Question","name":"Do you store my content?","acceptedAnswer":{"@type":"Answer","text":"When signed in, your drafts can be saved to your library. You can delete them at any time."}},
+        { "@type":"Question","name":"What about plagiarism?","acceptedAnswer":{"@type":"Answer","text":"We include a plagiarism estimation tool to flag high-risk segments and encourage adding original insights."}},
+        { "@type":"Question","name":"Which languages are supported?","acceptedAnswer":{"@type":"Answer","text":"The interface is in English, but generation quality is strong for many languages."}},
+        { "@type":"Question","name":"How do daily limits reset?","acceptedAnswer":{"@type":"Answer","text":"Limits reset at midnight in your local time. The countdown bar shows the remaining time."}}
       ]
     }
   </script>
