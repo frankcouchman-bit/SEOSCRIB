@@ -1,0 +1,138 @@
+---
+import '../styles/global.css';
+
+import CountdownBar from '../components/islands/CountdownBar.tsx';
+import Header from '../components/islands/Header.tsx';
+import HeroGenerator from '../components/islands/HeroGenerator.tsx';
+import StickyCTA from '../components/islands/StickyCTA.tsx';
+import ExitIntentModal from '../components/islands/ExitIntentModal.tsx';
+import Pricing from '../components/islands/Pricing.tsx';
+import FAQ from '../components/islands/FAQ.tsx';
+
+// Page SEO
+const title =
+  'Article Writer, AI Writer & Writing Tool | Long-Form SEO Content – SEOScribe';
+const desc =
+  'SEOScribe is the long-form article writer and AI writer built for SEO. Create 2,000–6,000 word articles with citations, hero images, A/B titles, FAQs, and social posts. Free article writer demo (1/day).';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <link rel="canonical" href="https://seoscribe.pro/" />
+    <meta name="theme-color" content="#0d183b" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Article Writer, AI Writer & Writing Tool – SEOScribe" />
+    <meta property="og:description" content="Generate long-form, citation-backed articles in minutes. Free AI writer demo (no signup) + SEO tools." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/hero.png" />
+    <meta property="og:url" content="https://seoscribe.pro/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Preload LCP -->
+    <link rel="preload" as="image" href="/hero.png" imagesrcset="/hero.png 1x" fetchpriority="high" />
+  </head>
+  <body class="grid-bg">
+    <!-- Countdown (island). Use serializable props; let the island handle auth actions. -->
+    <CountdownBar client:load plan="free" articlesUsed={0} articleLimit={1} authTarget="#hero" />
+
+    <!-- Header (island). Pass targets/links; handle clicks inside the island. -->
+    <Header client:load plan="free" authTarget="#hero" upgradeTarget="#pricing" />
+
+    <!-- HERO -->
+    <section id="hero" class="pt-36 pb-20 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-80 h-80 rounded-full blur-3xl"
+           style="background:radial-gradient(circle,rgba(122,90,248,.25) 0%,transparent 70%); transform:translate(-30%,-30%)"></div>
+      <div class="absolute bottom-[-120px] right-[-120px] w-[380px] h-[380px] rounded-full blur-3xl"
+           style="background:radial-gradient(circle,rgba(214,110,253,.22) 0%,transparent 70%)"></div>
+
+      <div class="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex gap-2 items-center px-4 py-2 mb-4 rounded-full"
+               style="background:rgba(102,126,234,.15);border:1px solid rgba(102,126,234,.3)">
+            <span>🎁 Free AI Writer</span><span>•</span><span>No Credit Card</span>
+          </div>
+          <h1 class="text-4xl md:text-6xl font-black leading-tight mb-4" style="font-family:'Sora',sans-serif">
+            Create with an <span style="background:linear-gradient(135deg,#7a5af8 0%,#d66efd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent">AI Writer</span> built for SEO — your long-form <span style="background:linear-gradient(135deg,#7a5af8 0%,#d66efd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent">article writer</span> & <span style="background:linear-gradient(135deg,#7a5af8 0%,#d66efd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent">writing tool</span>
+          </h1>
+          <p class="text-lg text-white/80 max-w-md mb-6">
+            Generate 2,000–6,000 word articles in minutes with citations and a hero image, plus FAQs and nine social posts.
+          </p>
+
+          <!-- Generator (island) -->
+          <HeroGenerator client:load />
+        </div>
+
+        <div class="hidden md:flex justify-end">
+          <img src="/hero.png" alt="AI writer creating long-form SEO content"
+               class="w-full max-w-[720px] rounded-3xl shadow-2xl showcase-img"
+               style="aspect-ratio: 16/10; object-fit: cover" fetchpriority="high" decoding="async" loading="eager" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing & FAQ (islands) -->
+    <Pricing client:load />
+    <FAQ client:load />
+
+    <!-- Sticky CTA (island). Use a target ID the island can scroll to. -->
+    <StickyCTA client:load target="#hero" />
+
+    <!-- Exit intent (island). Same idea: pass a target to open auth/scroll. -->
+    <ExitIntentModal client:load authTarget="#hero" />
+
+    <footer class="py-8 glass-strong">
+      <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+        <div class="text-white/70 mb-3 md:mb-0">© 2025 SEOScribe. All rights reserved.</div>
+        <div class="flex gap-4">
+          <a href="/privacy.html" class="text-white/70 hover:text-white underline">Privacy</a>
+          <a href="/terms.html" class="text-white/70 hover:text-white underline">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"Organization",
+        "name":"SEOScribe",
+        "url":"https://seoscribe.pro/",
+        "logo":"https://seoscribe.pro/hero.png"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"SoftwareApplication",
+        "name":"SEOScribe - AI Article Writer",
+        "applicationCategory":"BusinessApplication",
+        "applicationSubCategory":"ContentCreationSoftware",
+        "operatingSystem":"Web",
+        "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+        "description":"Free AI writer that generates 2,000–6,000 word SEO articles with citations and hero images in minutes.",
+        "keywords":"ai writer, article writer, ai writing tool, writing tool, free article writer",
+        "url":"https://seoscribe.pro/"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"FAQPage",
+        "mainEntity":[
+          { "@type":"Question","name":"Is SEOScribe really a free AI writer?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can generate one full article per day (2–6k words) and one demo article per IP per month without signing in. Pro unlocks 15/day, export, library and analytics."}},
+          { "@type":"Question","name":"What makes this AI writing tool better for SEO?","acceptedAnswer":{"@type":"Answer","text":"We generate long-form drafts with citations, H2/H3 structure, hero images, A/B titles, keyword ideas, FAQs and social posts."}},
+          { "@type":"Question","name":"Can the article writer handle long-form content?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our writer targets 2–6k words with readable sections and internal link suggestions."}}
+        ]
+      }
+    </script>
+  </body>
+</html>
