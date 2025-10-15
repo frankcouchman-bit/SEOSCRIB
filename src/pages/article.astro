@@ -1,0 +1,21 @@
+---
+import '../styles/global.css';
+import ArticleViewer from '../components/islands/ArticleViewer.tsx';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Article – SEOScribe</title>
+    <meta name="robots" content="noindex,follow" />
+  </head>
+  <body>
+    <div class="w-full bg-white/5 border-b border-white/10">
+      <div class="max-w-[1280px] mx-auto px-6 py-3 flex items-center justify-between">
+        <a href="/" class="font-black">SEOScribe</a>
+        <a href="/tools" class="text-white/70 hover:text-white">Tools</a>
+      </div>
+    </div>
+    <ArticleViewer client:load />
+  </body>
+</html>
