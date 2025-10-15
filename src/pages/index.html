@@ -11,20 +11,25 @@
   <!-- Primary SEO -->
   <meta name="description" content="SEOScribe is the long-form article writer and AI writer built for SEO. Create 2,000–6,000 word articles with citations, hero images, A/B titles, FAQs, and social posts. Free article writer demo (1/day). The writing tool teams use to rank." />
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
-  <link rel="canonical" href="/" />
+  <link rel="canonical" href="https://seoscribe.pro/" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Article Writer, AI Writer & Writing Tool – SEOScribe" />
   <meta property="og:description" content="Generate long-form, citation-backed articles in minutes. Free AI writer demo (no signup) + SEO tools." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/hero.png" />
-  <meta property="og:url" content="/" />
+  <meta property="og:url" content="https://seoscribe.pro/" />
+  <meta property="og:site_name" content="SEOScribe" />
+  <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="SEOScribe – Long-Form Article Writer with SEO" />
   <meta name="twitter:description" content="2–6k words, citations, hero image, FAQs, social posts. Free demo." />
   <meta name="twitter:image" content="/hero.png" />
+
+  <!-- Misc -->
+  <meta name="theme-color" content="#0d183b" />
 
   <!-- Keywords (legacy; engines use page content) -->
   <meta name="keywords" content="ai writer, article writer, writing tool, ai writing tool, article writing software, blog writer, seo content writer, free article writer, ai blog generator, content brief, plagiarism checker, headline analyzer, readability, competitor analysis, meta description" />
@@ -34,6 +39,7 @@
 
   <!-- Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Preload + prioritize LCP hero image (keeps your hero.png first & fastest) -->
@@ -166,7 +172,6 @@
 
     // ----------- UTILS -----------
     const isPro = () => state.plan === 'pro';
-    // NEW: robust signed-in check for gating; we use token presence so it works immediately on callback
     const isSignedIn = () => !!state.authToken;
 
     const TOOL_NAMES = {
@@ -177,7 +182,6 @@
       competitors: 'Competitor Analysis',
       keywords: 'Keyword Cluster',
       brief: 'Content Brief',
-      meta: 'Meta Description',
       assistant: 'AI Assistant',
     };
 
@@ -249,20 +253,16 @@
       return getToolUses(id)>=limit;
     }
 
-    // IMPORTANT FIX: when signed in, don't mix in local (IP/demo) counters.
     function getCombinedTodayGenerations(){
-      // If the user is signed in, rely solely on server usage for that account.
       if (isSignedIn()) {
         return state.usage?.today?.generations || 0;
       }
-      // Guest/demo users use local counter (IP/browser scoped) to discourage abuse.
       const local=state.localGenerations||0;
       return local;
     }
 
-    // Only count local demo generations for guests. Signed-in usage is tracked by server.
     function incrementLocalGenerations(){
-      if (isSignedIn()) return; // <-- FIX: don't increment local when signed in
+      if (isSignedIn()) return;
       state.localGenerations=(state.localGenerations||0)+1;
       localStorage.setItem('localGenerations', String(state.localGenerations));
       if(!state.genDate){
@@ -528,7 +528,6 @@
             state.loading=false; render(); return;
           }
           if(res.status===403){
-            // Server signals guest demo exhausted (IP/month). Prompt sign in.
             showToast(out.message || 'You\'ve used your free demo. Create a free account to continue.','error');
             setTimeout(()=>showModal('authModal'),600);
             state.loading=false; render(); return;
@@ -540,10 +539,8 @@
         state.chosenTitle = out.title || null;
         state.clusters = null;
 
-        // Only increment local demo usage when NOT signed in (prevents cross-account IP lock)
         incrementLocalGenerations();
 
-        // Refresh server usage for signed-in users
         fetchProfile();
 
         state.loading=false;
@@ -1041,7 +1038,7 @@
           </div>
         </section>
 
-        <!-- ON-PAGE FAQ -->
+        <!-- ON-PAGE FAQ (EXPANDED) -->
         <section id="faq" class="py-16 glass-strong cv-auto">
           <div class="max-w-[1200px] mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-black mb-6">FAQ: AI Writer, Article Writer & Writing Tool</h2>
@@ -1052,6 +1049,17 @@
                 ['Can the article writer handle long-form content?', 'Yes. Our writer targets 2–6k words with readable sections, internal link suggestions, and optional website URL input to seed internal linking.'],
                 ['Will my content rank on Google?', 'We structure for SEO and provide depth, keywords, citations, hero images and FAQs. Ranking also depends on your domain, links, and competition.'],
                 ['Is there a writing tool for headlines, meta and briefs?', 'Yes—our tools include headline analyzer, readability, SERP preview, plagiarism estimation, keyword clustering and content briefs. Free: 1 use per tool/day; Pro: 10 per tool/day.'],
+                ['How fast does the AI writer generate an article?', 'Most drafts are ready in about 1–3 minutes depending on length and queue.'],
+                ['Does SEOScribe work in languages other than English?', 'Yes, SEOScribe can generate in multiple languages. Quality varies by language; English currently yields the best results.'],
+                ['Can I export to WordPress or my CMS?', 'Yes. Export Markdown (Pro) or copy and paste. Markdown works great with WordPress, Ghost, Notion, and most CMSs.'],
+                ['Is the content original? Do you have a plagiarism checker?', 'Drafts are generated fresh. We include citations and a built-in plagiarism estimation tool to help you review originality before publishing.'],
+                ['Can I set a brand voice or tone?', 'Enter your topic and choose a tone; Pro users can rewrite/expand sections inline to match brand guidelines.'],
+                ['How are images licensed?', 'Hero images are AI-generated for commercial use. Always review for brand fit and any trademarked elements before publishing.'],
+                ['What happens to my data and articles?', 'Saved articles live in your library. You can request deletion at any time; we do not sell your data.'],
+                ['Do you support teams?', 'Yes. You can sign in with individual accounts today. Shared libraries and roles are on our roadmap.'],
+                ['What are the daily limits on the free vs Pro plans?', 'Free: 1 article/day + 1 demo per IP/month; Pro: 15 articles/day and up to 10 uses per tool/day.'],
+                ['Is there an API?', 'An API is on our roadmap. If you need early access, contact support to discuss your use case.'],
+                ['Does SEOScribe replace human editors?', 'No. It accelerates research and drafting. We recommend a human review for accuracy, compliance, and voice before publishing.']
               ].map(([q,a])=> `
                 <details class="faq glass p-4 rounded-xl">
                   <summary class="flex items-center justify-between font-extrabold cursor-pointer">
@@ -1211,7 +1219,6 @@
       return `
         <div class="pt-28 pb-12 px-4">
           <div class="max-w-[1000px] mx-auto relative">
-            <!-- Sticky CTA -->
             ${!state.user ? `
               <div id="stickyCta" class="hidden fixed bottom-4 right-4 left-4 md:left-auto z-[60]">
                 <div class="glass-strong rounded-2xl p-4 md:min-w-[420px] shadow-2xl flex items-center gap-3">
@@ -2091,7 +2098,6 @@
           } catch(err){ showToast(err.message || 'Assistant failed','error'); }
         }
 
-        // Templates (counts toward daily article limit)
         if(act==='run-template'){
           const used = getCombinedTodayGenerations();
           const limit = isPro()?15:1;
@@ -2247,7 +2253,7 @@
     }
   </script>
 
-  <!-- FAQPage JSON-LD (matches on-page FAQ) -->
+  <!-- FAQPage JSON-LD (EXPANDED: matches on-page FAQ) -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -2257,7 +2263,18 @@
         { "@type":"Question","name":"What makes this AI writing tool better for SEO?","acceptedAnswer":{"@type":"Answer","text":"We generate long-form content with citations, H2/H3 structure, hero images, A/B titles, keyword ideas, FAQs and social posts."}},
         { "@type":"Question","name":"Can the article writer handle long-form content?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our writer targets 2–6k words with readable sections, internal link suggestions, and optional website URL input to seed internal linking."}},
         { "@type":"Question","name":"Will my content rank on Google?","acceptedAnswer":{"@type":"Answer","text":"We structure for SEO and provide depth, keywords, citations, hero images and FAQs. Ranking also depends on your domain, links, and competition."}},
-        { "@type":"Question","name":"Is there a writing tool for headlines, meta and briefs?","acceptedAnswer":{"@type":"Answer","text":"Yes—our tools include headline analyzer, readability, SERP preview, plagiarism estimation, keyword clustering and content briefs. Free: 1 use per tool/day; Pro: 10 per tool/day."}}
+        { "@type":"Question","name":"Is there a writing tool for headlines, meta and briefs?","acceptedAnswer":{"@type":"Answer","text":"Yes—our tools include a headline analyzer, readability, SERP preview, plagiarism estimation, keyword clustering and content briefs. Free: 1 use per tool/day; Pro: 10 per tool/day."}},
+        { "@type":"Question","name":"How fast does the AI writer generate an article?","acceptedAnswer":{"@type":"Answer","text":"Most drafts are ready in about 1–3 minutes depending on length and queue."}},
+        { "@type":"Question","name":"Does SEOScribe work in languages other than English?","acceptedAnswer":{"@type":"Answer","text":"Yes, SEOScribe can generate in multiple languages. Quality varies by language; English currently yields the best results."}},
+        { "@type":"Question","name":"Can I export to WordPress or my CMS?","acceptedAnswer":{"@type":"Answer","text":"Yes. Export Markdown (Pro) or copy and paste. Markdown works well with WordPress, Ghost, Notion, and most CMSs."}},
+        { "@type":"Question","name":"Is the content original? Do you have a plagiarism checker?","acceptedAnswer":{"@type":"Answer","text":"Drafts are generated fresh. We include citations and a built-in plagiarism estimation tool to help you review originality before publishing."}},
+        { "@type":"Question","name":"Can I set a brand voice or tone?","acceptedAnswer":{"@type":"Answer","text":"Enter your topic and choose a tone; Pro users can rewrite or expand sections inline to fit brand guidelines."}},
+        { "@type":"Question","name":"How are images licensed?","acceptedAnswer":{"@type":"Answer","text":"Hero images are AI-generated for commercial use. Always review for brand fit and potential trademarks before publishing."}},
+        { "@type":"Question","name":"What happens to my data and articles?","acceptedAnswer":{"@type":"Answer","text":"Saved articles live in your library. You can request deletion at any time; we do not sell your data."}},
+        { "@type":"Question","name":"Do you support teams?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can sign in with individual accounts today. Shared libraries and roles are on our roadmap."}},
+        { "@type":"Question","name":"What are the daily limits on the free vs Pro plans?","acceptedAnswer":{"@type":"Answer","text":"Free: 1 article/day plus 1 demo per IP/month; Pro: 15 articles/day and up to 10 uses per tool/day."}},
+        { "@type":"Question","name":"Is there an API?","acceptedAnswer":{"@type":"Answer","text":"An API is on our roadmap. Contact support if you need early access."}},
+        { "@type":"Question","name":"Does SEOScribe replace human editors?","acceptedAnswer":{"@type":"Answer","text":"No. It accelerates research and drafting. We recommend human review for accuracy, compliance, and voice before publishing."}}
       ]
     }
   </script>
